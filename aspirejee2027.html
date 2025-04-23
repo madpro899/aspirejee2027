@@ -1,0 +1,135 @@
+<!DOCTYPE html><html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>AspireJEE - Plan Your JEE Journey</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet" />
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Inter', sans-serif; }
+    body { background: linear-gradient(135deg, #e0f2fe, #f8fafc); color: #1e293b; padding: 2rem; }
+    .container { max-width: 960px; margin: auto; display: flex; flex-direction: column; gap: 2rem; }
+    header { text-align: center; }
+    h1 { font-size: 2.5rem; color: #0f172a; margin-bottom: 0.5rem; }
+    .countdown { font-size: 1.2rem; color: #475569; }nav { display: flex; justify-content: center; gap: 2rem; margin-top: 1rem; }
+nav a { color: #2563eb; text-decoration: none; font-weight: 600; }
+
+section { background: rgba(255, 255, 255, 0.8); backdrop-filter: blur(10px); border-radius: 1rem; padding: 2rem; box-shadow: 0 6px 24px rgba(0, 0, 0, 0.08); }
+h2 { margin-bottom: 1rem; font-size: 1.5rem; color: #1e40af; }
+ul { list-style: none; display: flex; flex-direction: column; gap: 1rem; }
+li { display: flex; justify-content: space-between; align-items: center; padding: 1rem; background: #f1f5f9; border-radius: 0.75rem; }
+a { color: #0ea5e9; text-decoration: none; }
+input[type="checkbox"] { transform: scale(1.3); cursor: pointer; }
+
+footer { text-align: center; font-size: 0.9rem; color: #64748b; margin-top: 2rem; }
+
+.login-form {
+  max-width: 400px;
+  margin: 2rem auto;
+  padding: 2rem;
+  background: rgba(255, 255, 255, 0.9);
+  border-radius: 1rem;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1);
+}
+.login-form h2 { text-align: center; margin-bottom: 1.5rem; color: #1e3a8a; }
+.login-form input {
+  width: 100%;
+  padding: 0.75rem;
+  margin-bottom: 1rem;
+  border: 1px solid #cbd5e1;
+  border-radius: 0.5rem;
+  font-size: 1rem;
+}
+.login-form button {
+  width: 100%;
+  padding: 0.75rem;
+  background: #3b82f6;
+  color: white;
+  border: none;
+  border-radius: 0.5rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.3s ease;
+}
+.login-form button:hover {
+  background: #2563eb;
+}
+
+  </style>
+</head>
+<body>
+  <div class="container">
+    <header>
+      <h1>AspireJEE</h1>
+      <div class="countdown" id="countdown">Loading countdown...</div>
+      <nav>
+        <a href="#roadmap">Roadmap</a>
+        <a href="#notes">Study Notes</a>
+        <a href="#progress">Progress</a>
+        <a href="#login">Login</a>
+      </nav>
+    </header><section id="roadmap">
+  <h2>Class 11 Roadmap</h2>
+  <ul>
+    <li>Week 1: Units & Dimensions <input type="checkbox"></li>
+    <li>Week 2: Motion in 1D <input type="checkbox"></li>
+    <li>Week 3: Laws of Motion <input type="checkbox"></li>
+    <li>Week 4: Work, Power, Energy <input type="checkbox"></li>
+  </ul>
+</section>
+
+<section id="notes">
+  <h2>Class 11 Notes</h2>
+  <ul>
+    <li><a href="https://drive.google.com/drive/folders/1NUZVTQG0phXiE4pdanAJH7Ryd58tRQid" target="_blank">Physics: Units & Measurements</a></li>
+    <li><a href="notes/Chem_MoleConcept.pdf" target="_blank">Chemistry: Mole Concept</a></li>
+    <li><a href="notes/Math_Sets.pdf" target="_blank">Math: Sets & Relations</a></li>
+  </ul>
+</section>
+
+<section id="progress">
+  <h2>Progress Tracker</h2>
+  <ul>
+    <li>Thermodynamics <input type="checkbox"></li>
+    <li>Oscillations <input type="checkbox"></li>
+    <li>Trigonometry <input type="checkbox"></li>
+  </ul>
+</section>
+
+<section id="login">
+  <form class="login-form">
+    <h2>Login</h2>
+    <input type="text" placeholder="Username" required />
+    <input type="password" placeholder="Password" required />
+    <button type="submit">Login</button>
+  </form>
+</section>
+
+<footer>
+  Created with passion for JEE 2027 Aspirants | AspireJEE
+</footer>
+
+  </div>  <script>
+    // Countdown
+    const countdownEl = document.getElementById("countdown");
+    const jeeDate = new Date("2027-04-06T09:00:00").getTime();
+    setInterval(() => {
+      const now = new Date().getTime();
+      const diff = jeeDate - now;
+
+      const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+      const hours = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+      const minutes = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
+
+      countdownEl.innerHTML = `JEE 2027 in: ${days} days ${hours} hrs ${minutes} min`;
+    }, 1000);
+
+    // LocalStorage for progress
+    document.querySelectorAll('input[type="checkbox"]').forEach((box, i) => {
+      const key = `aspirejee_progress_${i}`;
+      box.checked = localStorage.getItem(key) === "true";
+      box.addEventListener("change", () => {
+        localStorage.setItem(key, box.checked);
+      });
+    });
+  </script></body>
+</html>
